@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "1win",
+    "name": "1win Casino",
+    "affiliate_link": "https://1win.com/...",
+    "logo": "1win.png",
+    "rating": 4.9,
+    "features": ["支持USDT", "提现秒到"],
+    "content": "这里是 Agent 生成的 2000 字深度评测..."
+  },
+  {
+    "slug": "stake",
+    "name": "Stake",
+    "affiliate_link": "https://stake.com/...",
+    // ...
+  }
+]
