@@ -1,0 +1,35 @@
+name: Auto Manager Agent
+on:
+  workflow_dispatch: # 允许你手动点击按钮运行
+  schedule:
+    - cron: '0 0 * * *' # 每天运行一次
+
+jobs:
+  manage-sites:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install libraries
+        run: pip install requests
+
+      - name: Run Agent Script
+        env: # 把 Secrets 传给 Python 脚本
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+        run: python manager.py
+
+      - name: Commit changes (sites.json)
+        run: |
+          git config --global user.name 'Agent Bot'
+          git config --global user.email 'bot@noreply.com'
+          git add sites.json
+          git commit -m "Agent updated sites config" || echo "No changes to commit"
+          git push
