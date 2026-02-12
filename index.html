@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        mono: ['Orbitron', 'monospace'],
+                    },
+                },
+            },
+        }
+    </script>
+
+    <style>
+        [x-cloak] { display: none !important; }
+        /* Smooth transition for theme switching */
+        body { transition: background-color 0.5s ease, color 0.5s ease; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+</head>
+<body class="antialiased min-h-screen" 
+      x-data="siteManager()" 
+      x-init="initApp()" 
+      :class="currentTheme.container">
+
+    <!-- DEMO CONTROLS (Remove in production) -->
+    <div class="fixed top-4 right-4 z-50 bg-white/90 dark:bg-black/90 p-4 rounded-lg shadow-xl border border-gray-200 backdrop-blur-md text-xs">
+        <label class="block font-bold uppercase text-gray-500 mb-1">Simulate Hostname</label>
+        <select 
+            x-model="simulatedHostname" 
+            @change="detectSite()" 
+            class="bg-transparent border border-gray-300 rounded px-2 py-1 text-gray-800 dark:text-gray-100 focus:outline-none w-full">
+            <template x-for="site in allSites" :key="site.id">
+                <option :value="site.hostname" x-text="site.hostname + ' (' + site.theme + ')'"></option>
+            </template>
+        </select>
+        <div class="mt-2 text-gray-400 max-w-[150px]">
+            Simulates detecting the domain to load specific config.
+        </div>
+    </div>
+
+    <!-- LOADING STATE -->
+    <div x-show="loading" class="fixed inset-0 flex items-center justify-center bg-gray-900 z-40">
+        <div class="text-white text-xl animate-pulse font-mono">Loading Configuration...</div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main x-show="!loading" x-cloak class="flex flex-col transition-opacity duration-500">
+        
+        <!-- DYNAMIC LAYOUT LOOP -->
+        <template x-for="(sectionType, index) in config.layout_order" :key="index">
+            
+            <!-- 1. HERO COMPONENT -->
+            <template x-if="sectionType === 'hero'">
+                <section class="relative w-full overflow-hidden" :class="currentTheme.font">
+                    <!-- Background -->
+                    <div class="absolute inset-0 z-0">
+                        <img :src="config.hero.background_image" alt="Hero BG" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 opacity-90 transition-colors duration-500" 
+                             :class="currentTheme.container.includes('bg-gray') ? 'bg-white/80' : 'bg-black/70'"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 lg:py-40 flex flex-col items-center text-center">
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 transition-colors duration-300" 
+                            :class="[currentTheme.accent, currentTheme.text]"
+                            x-text="config.hero.title"></h1>
+                        <p class="text-lg md:text-2xl max-w-2xl mb-10 opacity-90 transition-colors duration-300"
+                           :class="currentTheme.text" 
+                           x-text="config.hero.subtitle"></p>
+                        <a href="#offers" 
+                           class="px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105 shadow-xl"
+                           :class="currentTheme.button"
+                           x-text="config.hero.cta_text"></a>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 2. OFFERS LIST COMPONENT -->
+            <template x-if="sectionType === 'offers'">
+                <section id="offers" class="py-16 px-4 md:px-8 mx-auto w-full" :class="currentTheme.font">
+                    <div class="max-w-7xl mx-auto">
+                        <h2 class="text-3xl font-bold mb-10 text-center" :class="currentTheme.text">Top Recommendations</h2>
+                        
+                        <!-- GRID MODE -->
+                        <template x-if="config.list_style === 'grid'">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <template x-for="offer in activeOffers" :key="offer.id">
+                                    <div class="flex flex-col group transition-all duration-300 hover:-translate-y-2"
+                                         :class="currentTheme.card">
+                                        
+                                        <!-- Card Image -->
+                                        <div class="h-48 overflow-hidden relative w-full">
+                                            <img :src="offer.backgroundImage" :alt="offer.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                            <div class="absolute top-2 right-2">
+                                                <span class="px-2 py-1 text-xs font-bold rounded" 
+                                                      :class="[currentTheme.secondary, currentTheme.accent]"
+                                                      x-text="offer.rating + ' / 5'"></span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Card Body -->
+                                        <div class="p-6 flex-1 flex flex-col">
+                                            <div class="flex items-center mb-4">
+                                                <img :src="offer.logo" class="w-12 h-12 rounded-full mr-4 border-2 border-white/10 shadow-sm">
+                                                <h3 class="text-xl font-bold" :class="currentTheme.text" x-text="offer.name"></h3>
+                                            </div>
+                                            <p class="text-sm mb-4 flex-1 opacity-80" :class="currentTheme.text" x-text="offer.description"></p>
+                                            <div class="mb-4">
+                                                <p class="text-lg font-bold" :class="currentTheme.accent" x-text="offer.bonus"></p>
+                                            </div>
+                                            <!-- Tags -->
+                                            <div class="flex flex-wrap gap-2 mb-6">
+                                                <template x-for="tag in offer.tags">
+                                                    <span class="text-xs px-2 py-1 rounded border opacity-60"
+                                                          :class="[currentTheme.border, currentTheme.text]"
+                                                          x-text="tag"></span>
+                                                </template>
+                                            </div>
+                                            <a :href="offer.link" class="w-full text-center py-3 block mt-auto" :class="currentTheme.button">Play Now</a>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- TABLE MODE -->
+                        <template x-if="config.list_style === 'table'">
+                            <div class="flex flex-col space-y-4 max-w-5xl mx-auto">
+                                <template x-for="(offer, idx) in activeOffers" :key="offer.id">
+                                    <div class="flex flex-col md:flex-row items-center p-4 md:p-6 rounded-lg transition-colors"
+                                         :class="[currentTheme.card, currentTheme.border]">
+                                        
+                                        <!-- Rank & Logo -->
+                                        <div class="flex items-center w-full md:w-1/4 mb-4 md:mb-0">
+                                            <span class="text-2xl font-bold mr-6 opacity-50" :class="currentTheme.accent" x-text="'#' + (idx + 1)"></span>
+                                            <img :src="offer.logo" class="w-16 h-16 rounded-lg object-cover shadow-md">
+                                            <div class="ml-4 md:hidden">
+                                                <h3 class="text-lg font-bold" :class="currentTheme.text" x-text="offer.name"></h3>
+                                            </div>
+                                        </div>
+
+                                        <!-- Name & Rating (Desktop) -->
+                                        <div class="hidden md:flex flex-col w-1/4 px-4">
+                                            <h3 class="text-lg font-bold" :class="currentTheme.text" x-text="offer.name"></h3>
+                                            <div class="text-xs opacity-70" :class="currentTheme.text" x-text="'Rating: ' + offer.rating + '/5.0'"></div>
+                                        </div>
+
+                                        <!-- Bonus Info -->
+                                        <div class="w-full md:w-1/4 mb-4 md:mb-0 text-center md:text-left">
+                                            <span class="block text-xs uppercase tracking-wider mb-1 opacity-60" :class="currentTheme.text">Bonus</span>
+                                            <span class="text-lg font-bold" :class="currentTheme.accent" x-text="offer.bonus"></span>
+                                        </div>
+
+                                        <!-- CTA -->
+                                        <div class="w-full md:w-1/4 flex justify-end">
+                                            <a :href="offer.link" class="w-full md:w-auto px-8 py-3 text-center" :class="currentTheme.button">Claim</a>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </section>
+            </template>
+
+            <!-- 3. SEO CONTENT COMPONENT -->
+            <template x-if="sectionType === 'seo'">
+                <article class="py-16 px-6 max-w-4xl mx-auto" :class="currentTheme.font">
+                    <div class="p-8 md:p-12 rounded-2xl border shadow-inner transition-colors duration-500"
+                         :class="[currentTheme.secondary, currentTheme.border]">
+                        <h2 class="text-3xl font-bold mb-6" :class="currentTheme.text" x-text="config.seo_content.title"></h2>
+                        <div class="prose lg:prose-xl opacity-90 leading-relaxed" :class="currentTheme.text">
+                            <p x-text="config.seo_content.body"></p>
+                            <p class="mt-4 text-base opacity-75">
+                                Our team of experts rigorously tests every platform listed here to ensure fair play, secure transactions, and premium entertainment value. 
+                                Whether you prefer high-volatility slots or live dealer tables, our curated list adapts to the modern player's needs.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </template>
+
+        </template> <!-- End Layout Loop -->
+
+        <!-- Footer -->
+        <footer class="py-8 text-center border-t mt-auto" :class="[currentTheme.border, currentTheme.secondary]">
+            <p class="text-sm opacity-50" :class="currentTheme.text">
+                &copy; <span x-text="new Date().getFullYear()"></span> <span x-text="config.name"></span>. 
+                All rights reserved. 18+ Gamble Responsibly.
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- LOGIC SCRIPT -->
+    <script>
+        // THEME DEFINITIONS
+        const THEME_STYLES = {
+            cyberpunk: {
+                container: "bg-slate-900",
+                text: "text-slate-100",
+                accent: "text-cyan-400 drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]",
+                secondary: "bg-slate-800",
+                font: "font-mono",
+                card: "border border-cyan-500/30 bg-slate-900/80 backdrop-blur-sm shadow-[0_0_15px_rgba(6,182,212,0.15)]",
+                button: "bg-cyan-600 hover:bg-cyan-500 text-black font-bold uppercase tracking-widest clip-path-polygon rounded-sm",
+                border: "border-cyan-800"
+            },
+            royal: {
+                container: "bg-[#0a0a1a]",
+                text: "text-slate-200",
+                accent: "text-amber-400",
+                secondary: "bg-[#11112b]",
+                font: "font-serif",
+                card: "border border-amber-600/40 bg-[#0f0f26] shadow-2xl rounded-lg",
+                button: "bg-gradient-to-b from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-white font-semibold tracking-wide border border-amber-300 shadow-lg rounded-sm",
+                border: "border-amber-900"
+            },
+            modern: {
+                container: "bg-gray-50",
+                text: "text-gray-800",
+                accent: "text-indigo-600",
+                secondary: "bg-white",
+                font: "font-sans",
+                card: "bg-white border border-gray-100 shadow-lg rounded-2xl overflow-hidden",
+                button: "bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-full shadow-md transition-transform active:scale-95",
+                border: "border-gray-200"
+            }
+        };
+
+        // ALPINE COMPONENT
+        function siteManager() {
+            return {
+                loading: true,
+                simulatedHostname: 'cyber-casino.net', 
+                allSites: [],
+                masterOffers: [], 
+                config: {}, 
+                activeOffers: [], 
+                currentTheme: THEME_STYLES['modern'], 
+
+                async initApp() {
+                    await this.fetchConfigs();
+                },
+
+                async fetchConfigs() {
+                    try {
+                        // Parallel fetch from local root files
+                        const [sitesRes, contentRes] = await Promise.all([
+                            fetch('./sites.json'),
+                            fetch('./content_pool.json')
+                        ]);
+
+                        if (!sitesRes.ok) throw new Error("Failed to load sites.json");
+                        if (!contentRes.ok) throw new Error("Failed to load content_pool.json");
+
+                        this.allSites = await sitesRes.json();
+                        this.masterOffers = await contentRes.json();
+
+                        this.detectSite();
+                    } catch (error) {
+                        console.error("Config load error:", error);
+                        // Show visible error for deployment debugging
+                        document.body.innerHTML = `
+                            <div class="flex items-center justify-center min-h-screen bg-gray-900 text-red-400 p-8 text-center font-mono">
+                                Error loading configuration files.<br>
+                                Please ensure 'sites.json' and 'content_pool.json' are in the root directory.<br>
+                                Error details: ${error.message}
+                            </div>
+                        `;
+                    } finally {
+                        this.loading = false;
+                    } 
+                },
+
+                detectSite() {
+                    const hostname = this.simulatedHostname;
+                    
+                    const foundConfig = this.allSites.find(s => s.hostname === hostname);
+                    
+                    if (foundConfig) {
+                        this.config = foundConfig;
+                        this.currentTheme = THEME_STYLES[foundConfig.theme] || THEME_STYLES['modern'];
+                        
+                        // Map offerIds from config to actual offer objects from fetched content_pool
+                        this.activeOffers = foundConfig.offer_ids
+                            .map(id => this.masterOffers.find(o => o.id === id))
+                            .filter(Boolean);
+
+                        document.title = foundConfig.name;
+                    } else {
+                        console.warn("Site config not found for hostname:", hostname);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
