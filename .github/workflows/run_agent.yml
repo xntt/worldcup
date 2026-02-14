@@ -1,0 +1,52 @@
+name: Auto Manager Agent
+
+on:
+  # 允许手动点击按钮运行 (测试用)
+  workflow_dispatch:
+  # 设置定时任务 (例如每12小时运行一次)
+  schedule:
+    - cron: '0 */12 * * *'
+
+# 赋予写权限，否则 Agent 无法修改 json 文件并保存
+permissions:
+  contents: write
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. 拉取代码到虚拟机
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. 安装 Python 环境
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 3. 安装依赖库 (读取 requirements.txt)
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # 4. 运行你的 Agent 脚本
+      - name: Run Manager Script
+        env:
+          # 这里读取你在 GitHub Settings 里设置的 Secrets
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
+        run: python manager.py
+
+      # 5. 如果 json 文件有变化，提交回仓库
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'AI Agent Bot'
+          git config --global user.email 'bot@noreply.com'
+          # 只提交 json 文件的变化
+          git add sites.json content_pool.json
+          # 如果没有变化不报错
+          git commit -m "Agent auto-update: new content generated" || echo "No changes to commit"
+          git push
