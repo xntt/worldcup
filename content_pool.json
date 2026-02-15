@@ -1,22 +1,20 @@
 [
   {
     "id": "test_1",
-    "name": "Test Casino A",
-    "logo": "https://placehold.co/100x100/orange/white?text=A",
-    "link": "https://google.com",
-    "bonus": "$1000 Bonus",
+    "name": "1win Casino",
+    "logo": "https://via.placeholder.com/100x100.png?text=1win",
+    "link": "https://1win.com",
+    "bonus": "500% Bonus",
     "rating": 5.0,
-    "tags": ["Test Tag"],
-    "description": "This is a test description."
+    "tags": ["Crypto", "Instant"]
   },
   {
     "id": "test_2",
-    "name": "Test Casino B",
-    "logo": "https://placehold.co/100x100/blue/white?text=B",
-    "link": "https://google.com",
-    "bonus": "500 Free Spins",
-    "rating": 4.5,
-    "tags": ["Crypto"],
-    "description": "If you see this, the loop is working."
+    "name": "Stake Casino",
+    "logo": "https://via.placeholder.com/100x100.png?text=Stake",
+    "link": "https://stake.com",
+    "bonus": "$1000 Welcome",
+    "rating": 4.8,
+    "tags": ["VIP", "Global"]
   }
 ]
