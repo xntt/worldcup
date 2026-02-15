@@ -3,7 +3,7 @@
     "hostname": "mx.worldcup-guide.com",
     "theme": "royal",
     
-    // 1. 这里决定了显示的顺序！你想显示什么，就把名字加进去
+    // 1. Best Casino Platform
     "layout_order": ["hero", "matches", "offers", "news", "partners", "seo"], 
     
     "hero": {
@@ -15,7 +15,7 @@
 
     "offer_ids": ["test_1", "test_2"], 
 
-    // 2. 新增：新闻数据
+    // 2. NEWS
     "news_data": [
       {
         "title": "Mexico Team Roster Confirmed",
@@ -34,12 +34,12 @@
       }
     ],
 
-    // 3. 新增：赛事数据
+    // 3.Games
     "matches_data": [
       {"team_a": "Mexico", "team_b": "France", "date": "June 11 - 18:00", "stadium": "Estadio Azteca", "odds": "2.45"},
       {"team_a": "USA", "team_b": "Italy", "date": "June 12 - 20:00", "stadium": "SoFi Stadium", "odds": "1.90"}
     ],
 
-    // 4. 新增：合作伙伴Logo墙
+    // 4. Partners
     "partners_data": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px
