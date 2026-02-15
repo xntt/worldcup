@@ -1,7 +1,7 @@
 [
   {
     "id": "site_2bahh2",
-    "hostname": "mx-bet.yourdomain.com",
+    "hostname": "mx.worldcup-guide.com",
     "name": "Best Casino Deals 2026",
     "theme": "cyberpunk",
     "layout_order": [
@@ -23,7 +23,7 @@
   },
   {
     "id": "site_vjg1dw",
-    "hostname": "loan-usa.yourdomain.com",
+    "hostname": "loan-usa.worldcup-guide.com",
     "name": "Best Finance Deals 2026",
     "theme": "modern",
     "layout_order": [
@@ -83,6 +83,32 @@
     },
     "offer_ids": [
       "bet365_mx"
+    ]
+  }
+]
+[
+  {
+    "hostname": "mx-bet.yourdomain.com", 
+    "theme": "royal", 
+    "layout_order": ["hero", "offers", "seo", "faq"],  // 
+    
+    "hero": {
+      "title": "Apuestas Copa Mundial 2026",
+      "subtitle": "Los mejores bonos para fans mexicanos",
+      "cta_text": "Ver Ofertas",
+      "background_image": "https://source.unsplash.com/random/1920x1080/?soccer,stadium"
+    },
+    
+    "offer_ids": ["1win_mx", "stake_global"], // 
+    
+    "seo_content": {
+      "title": "¿Cómo elegir el mejor casino?",
+      "body": "Para los jugadores en México, es crucial buscar licencias validadas..."
+    },
+    
+    "faq": [  // 
+      {"q": "¿Es legal apostar en línea?", "a": "Sí, utilizando plataformas internacionales..."},
+      {"q": "¿Cómo deposito pesos?", "a": "Usa SPEI o OXXO en 1win..."}
     ]
   }
 ]
