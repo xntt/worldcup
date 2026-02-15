@@ -2,17 +2,45 @@
   {
     "hostname": "mx.worldcup-guide.com",
     "theme": "royal",
-    "layout_order": ["hero", "offers", "seo"], 
+    "layout_order": [
+      "hero",
+      "offers",
+      "seo"
+    ],
     "hero": {
       "title": "TEST TITLE",
       "subtitle": "If you see this, config is working.",
       "cta_text": "Click Me",
       "background_image": "https://source.unsplash.com/random/1920x1080/?casino"
     },
-    "offer_ids": ["test_offer_1", "test_offer_2"], 
+    "offer_ids": [
+      "test_offer_1",
+      "test_offer_2"
+    ],
     "seo_content": {
       "title": "SEO Section Working",
       "body": "This is the text body."
     }
+  },
+  {
+    "id": "site_q8k6c6",
+    "hostname": "loan-usa.worldcup-guide.com",
+    "name": "Best Finance Deals 2026",
+    "theme": "modern",
+    "layout_order": [
+      "offers",
+      "hero",
+      "seo"
+    ],
+    "list_style": "table",
+    "hero": {
+      "title": "Top Finance Offers",
+      "subtitle": "Exclusive 2026 World Cup Deals",
+      "cta_text": "Check Offers",
+      "background_image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=1920&q=80"
+    },
+    "offer_ids": [
+      "bet365_mx"
+    ]
   }
 ]
