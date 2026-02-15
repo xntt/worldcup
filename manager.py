@@ -39,8 +39,8 @@ def update_sites_config():
     # 2. 定义你要添加的新域名 (在此处修改你要添加的子域名)
     # 提示：每次运行前，在这里填入你想生成的新域名
     new_domains_to_add = [
-        "mx-bet.yourdomain.com", 
-        "loan-usa.yourdomain.com"
+        "mx.worldcup-guide.com", 
+        "loan-usa.worldcup-guide.com"
     ] 
     
     added_domains = []
