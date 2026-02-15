@@ -1,20 +1,22 @@
 [
   {
-    "id": "test_offer_1",
-    "name": "Test Casino 1",
-    "logo": "https://placehold.co/100x100",
-    "link": "#",
+    "id": "test_1",
+    "name": "Test Casino A",
+    "logo": "https://placehold.co/100x100/orange/white?text=A",
+    "link": "https://google.com",
     "bonus": "$1000 Bonus",
     "rating": 5.0,
-    "tags": ["Test Tag"]
+    "tags": ["Test Tag"],
+    "description": "This is a test description."
   },
   {
-    "id": "test_offer_2",
-    "name": "Test Casino 2",
-    "logo": "https://placehold.co/100x100",
-    "link": "#",
+    "id": "test_2",
+    "name": "Test Casino B",
+    "logo": "https://placehold.co/100x100/blue/white?text=B",
+    "link": "https://google.com",
     "bonus": "500 Free Spins",
     "rating": 4.5,
-    "tags": ["Crypto"]
+    "tags": ["Crypto"],
+    "description": "If you see this, the loop is working."
   }
 ]
