@@ -41,19 +41,12 @@ jobs:
         run: python manager.py
 
       # 5. 如果 json 文件有变化，提交回仓库
-     - name: Commit and Push changes
+    - name: Commit and Push changes
         run: |
           git config --global user.name 'AI Agent Bot'
           git config --global user.email 'bot@noreply.com'
-          
-          # 1. 先把生成的文件加入暂存区
+          # 只提交 json 文件的变化
           git add sites.json content_pool.json
-          
-          # 2. 尝试提交
+          # 如果没有变化不报错
           git commit -m "Agent auto-update: new content generated" || echo "No changes to commit"
-          
-          # 3. 【关键修复】推送到远程之前，先拉取最新代码并合并
-          git pull --rebase origin main
-          
-          # 4. 再次推送
-          git push origin main
+          git push
