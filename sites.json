@@ -20,47 +20,46 @@
       "test_1",
       "test_2"
     ],
-    "news_data": [
-      {
-        "title": "Mexico Team Roster Confirmed",
-        "date": "Feb 15, 2026",
-        "excerpt": "The final squad for the 2026 World Cup has been announced with some surprise inclusions from Liga MX."
-      },
-      {
-        "title": "Best Betting Strategies for Group A",
-        "date": "Feb 14, 2026",
-        "excerpt": "How to maximize your wins during the group stages using handicap betting."
-      },
-      {
-        "title": "Stadium Guide: Azteca",
-        "date": "Feb 12, 2026",
-        "excerpt": "Everything you need to know about the legendary stadium including VIP seating and access."
-      }
-    ],
     "matches_data": [
       {
         "team_a": "Mexico",
-        "team_b": "France",
-        "date": "June 11 - 18:00",
+        "team_b": "Brazil",
+        "date": "June 12 - 19:00",
         "stadium": "Estadio Azteca",
-        "odds": "2.45"
+        "odds": "3.50"
       },
       {
         "team_a": "USA",
-        "team_b": "Italy",
-        "date": "June 12 - 20:00",
-        "stadium": "SoFi Stadium",
-        "odds": "1.90"
+        "team_b": "England",
+        "date": "June 13 - 21:00",
+        "stadium": "MetLife Stadium",
+        "odds": "2.10"
+      }
+    ],
+    "news_data": [
+      {
+        "title": "Opening Ceremony Details",
+        "date": "May 20, 2026",
+        "excerpt": "The World Cup opening ceremony will feature global stars..."
+      },
+      {
+        "title": "Mexico Team Update",
+        "date": "May 21, 2026",
+        "excerpt": "Key players are returning from injury just in time..."
+      },
+      {
+        "title": "Betting Odds Shift",
+        "date": "May 22, 2026",
+        "excerpt": "Brazil remains the favorite to win the 2026 trophy..."
       }
     ],
     "partners_data": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/100px-Apple_logo_black.svg.png"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png"
     ],
     "seo_content": {
-      "title": "Complete Betting Guide 2026",
-      "body": "This is the SEO text body. It helps Google understand what your site is about. Keep it relevant to the specific domain niche."
+      "title": "SEO Footer Title",
+      "body": "This is the SEO footer text that helps ranking."
     }
   }
 ]
