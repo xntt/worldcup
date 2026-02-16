@@ -56,5 +56,26 @@
       "title": "SEO Footer Title",
       "body": "This is the SEO footer text that helps ranking."
     }
+  },
+  {
+    "id": "site_u3lacy",
+    "hostname": "loan-usa.worldcup-guide.com",
+    "name": "Best Finance Deals 2026",
+    "theme": "modern",
+    "layout_order": [
+      "offers",
+      "hero",
+      "seo"
+    ],
+    "list_style": "table",
+    "hero": {
+      "title": "Top Finance Offers",
+      "subtitle": "Exclusive 2026 World Cup Deals",
+      "cta_text": "Check Offers",
+      "background_image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=1920&q=80"
+    },
+    "offer_ids": [
+      "bet365_mx"
+    ]
   }
 ]
