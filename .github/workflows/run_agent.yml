@@ -3,7 +3,7 @@ name: Auto Manager Agent
 on:
   # 允许手动点击按钮运行
   workflow_dispatch:
-  # 定时任务：每12小时运行一次
+  # 定时任务：每12小时自动运行一次
   schedule:
     - cron: '0 */12 * * *'
 
@@ -26,20 +26,25 @@ jobs:
         with:
           python-version: '3.9'
 
-      # 3. 安装依赖 (requests 等)
+      # 3. 安装依赖 (会自动安装 requirements.txt 里的 google-generativeai)
       - name: Install libraries
         run: |
+          python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # 4. 运行 Agent 脚本
+      # 4. 运行 Agent 脚本 (关键步骤)
       - name: Run Agent Script
         env:
+          # --- 这里配置 Gemini 的密钥 ---
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          
+          # --- 这里保留 Cloudflare 的密钥 (如果你的脚本还在自动绑定域名的话) ---
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_PROJECT_NAME: ${{ secrets.CF_PROJECT_NAME }}
         run: python manager.py
 
-      # 5. 提交并推送到 GitHub (包含冲突修复)
+      # 5. 提交并推送到 GitHub
       - name: Commit and Push changes
         run: |
           # 配置 Git 用户身份
@@ -49,12 +54,11 @@ jobs:
           # 添加生成的文件到暂存区
           git add sites.json content_pool.json
           
-          # 尝试提交 (如果没有变化，这步会跳过，不会报错)
-          git commit -m "Agent update: auto-generated content" || echo "No changes to commit"
+          # 尝试提交 (如果没有变化，这步会跳过)
+          git commit -m "Agent update: AI generated content" || echo "No changes to commit"
           
-          # 【关键修复】推送到远程之前，强制拉取最新代码并合并
-          # 注意：如果你的主分支叫 master，请把下面的 main 改成 master
+          # 强制拉取最新代码并合并 (防止冲突报错)
           git pull --rebase origin main
           
-          # 推送到远程仓库
+          # 推送到远程仓库 (注意：如果你的分支叫 master，请把下面的 main 改成 master)
           git push origin main
