@@ -14,10 +14,27 @@ SITES_FILE = 'sites.json'
 OFFERS_FILE = 'offers.json'
 
 # --- AI 生成函数 ---
-def generate_ai_content(domain, theme, geo):
-    """调用 Gemini 生成新闻和 SEO 文案"""
+def generate_ai_content(domain, theme, geo, focus_sport): 
+    
     try:
         model = genai.GenerativeModel('gemini-1.5-flash')
+        
+        if not focus_sport or focus_sport == "General":
+            sport_topic = "current trending sports events (like NBA, NFL, Champions League)"
+        else:
+            sport_topic = focus_sport
+
+        news_prompt = f"""
+        Act as a sports betting journalist for a {geo} site ({domain}).
+        Current Date: {datetime.now().strftime("%Y-%m-%d")}.
+        
+        Write 3 short, exciting news headlines about: {sport_topic}.
+        Focus on: Betting odds, match predictions, and player injuries.
+        
+        Output ONLY a JSON array: [
+            {{"title": "Headline", "date": "Today", "excerpt": "Summary"}}
+        ]
+        """
         
         # 1. 生成新闻
         news_prompt = f"""
