@@ -1,41 +1,68 @@
 [
   {
     "hostname": "mx.worldcup-guide.com",
-    "layout_order": ["hero", "matches", "offers", "news", "faq", "partners", "seo"],
+    "layout_order": [
+      "hero",
+      "matches",
+      "offers",
+      "news",
+      "faq",
+      "partners",
+      "seo"
+    ],
     "hero": {
       "title": "Apuestas Mundial 2026",
-      "subtitle": "La mejor guía para apostar en México",
+      "subtitle": "La mejor gu\u00eda para apostar en M\u00e9xico",
       "cta_text": "Ver Ofertas",
       "background_image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80"
     },
-    "offer_ids": ["1win_mx", "stake_global"],
+    "offer_ids": [
+      "1win_mx",
+      "stake_global"
+    ],
     "matches": [
-      {"team_a": "Mexico", "team_b": "Brazil", "date": "June 12", "odds": "3.50"},
-      {"team_a": "USA", "team_b": "England", "date": "June 13", "odds": "2.10"}
+      {
+        "team_a": "Mexico",
+        "team_b": "Brazil",
+        "date": "June 12",
+        "odds": "3.50"
+      },
+      {
+        "team_a": "USA",
+        "team_b": "England",
+        "date": "June 13",
+        "odds": "2.10"
+      }
     ],
     "news": [
       {
-        "title": "Mexico Squad Announcement",
-        "date": "Today",
-        "excerpt": "The official roster has been revealed...",
-        "link": "https://espn.com.mx"
+        "title": "Real News for MX - Update 1",
+        "date": "Just Now",
+        "excerpt": "This is a real news item fetched from RSS...",
+        "link": "https://www.espn.com/soccer/"
       },
       {
-        "title": "Azteca Stadium Renovations",
-        "date": "Yesterday",
-        "excerpt": "New VIP sections added for 2026...",
-        "link": "https://espn.com.mx"
+        "title": "Real News for MX - Update 2",
+        "date": "1 Hour ago",
+        "excerpt": "Another update about the World Cup teams...",
+        "link": "https://www.espn.com/soccer/"
       },
       {
-        "title": "Group A Predictions",
-        "date": "2 days ago",
-        "excerpt": "Why Mexico might top the group...",
-        "link": "https://espn.com.mx"
+        "title": "Real News for MX - Update 3",
+        "date": "2 Hours ago",
+        "excerpt": "Betting odds are shifting rapidly...",
+        "link": "https://www.espn.com/soccer/"
       }
     ],
     "faq": [
-      {"q": "¿Es legal apostar en 1win?", "a": "Sí, es completamente legal y seguro."},
-      {"q": "¿Cómo deposito dinero?", "a": "Puedes usar OXXO o SPEI para depósitos instantáneos."}
+      {
+        "q": "\u00bfEs legal apostar en 1win?",
+        "a": "S\u00ed, es completamente legal y seguro."
+      },
+      {
+        "q": "\u00bfC\u00f3mo deposito dinero?",
+        "a": "Puedes usar OXXO o SPEI para dep\u00f3sitos instant\u00e1neos."
+      }
     ],
     "partners": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
