@@ -1,22 +1,16 @@
 [
   {
-    "id": "1win_mx",
-    "name": "1win México",
-    "logo": "https://i.imgur.com/your_1win_logo.png", 
-    "link": "https://lkhq.pro/5467ef89",
-    "bonus": "500% Bonus",
-    "rating": 5.0,
-    "tags": ["Crypto", "Fast Pay"],
-    "geo": ["MX"]
+    "id": "1win_global",
+    "name": "1win Official",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/100px-React-icon.svg.png",
+    "link": "https://1win.com/register?promo=YOUR_CODE",
+    "bonus": "500% Welcome Bonus"
   },
   {
     "id": "stake_us",
-    "name": "Stake.us",
-    "logo": "https://i.imgur.com/your_stake_logo.png",
+    "name": "Stake.us Social",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/100px-React-icon.svg.png",
     "link": "https://stake.us/?c=YOUR_CODE",
-    "bonus": "250K Gold Coins",
-    "rating": 4.8,
-    "tags": ["Social Casino"],
-    "geo": ["US"]
+    "bonus": "250K Gold Coins + Free Cash"
   }
 ]
