@@ -8,7 +8,8 @@
       "offers",
       "news",
       "partners",
-      "seo"
+      "seo",
+      "faq"
     ],
     "hero": {
       "title": "World Cup 2026 Live Hub",
@@ -45,19 +46,22 @@
     ],
     "news_data": [
       {
-        "title": "'Anyone found guilty of racism should not be in the game'",
-        "date": "Feb 19",
-        "excerpt": "Latest update from the world of football."
+        "title": "Las Chivas de Milito rescatan la lista de Aguirre ante Islandia",
+        "date": "Feb 20, 2026",
+        "excerpt": "El Reba\u00f1o se convierti\u00f3 en la base de la Selecci\u00f3n Mexicana, con siete convocados para cubrir las bajas por lesi\u00f3n y ventas a Europa...",
+        "link": "https://www.espn.com.mx/futbol/selecciones/nota/_/id/16334257/seleccion-mexicana-chivas-convocatoria-javier-aguirre-islandia"
       },
       {
-        "title": "The eerie similarities between Arsenal's 2007-8 collapse and now",
-        "date": "Feb 19",
-        "excerpt": "Latest update from the world of football."
+        "title": "Campillo y 'Memote', sorpresas en la lista del 'Vasco'",
+        "date": "Feb 20, 2026",
+        "excerpt": "Javier Aguirre debi\u00f3 'improvisar' con jugadores del torneo local tras perder a varios candidatos por fichajes internacionales y lesiones...",
+        "link": "https://www.espn.com.mx/futbol/selecciones/nota/_/id/16331166/seleccion-mexicana-convocatoria-islandia-amistoso-2026"
       },
       {
-        "title": "The 20-year-old newspaper column that gave a hint to Man City's new tactics",
-        "date": "Feb 19",
-        "excerpt": "Latest update from the world of football."
+        "title": "'Hormiga' Gonz\u00e1lez rechaza oferta millonaria de Rusia: Fuentes",
+        "date": "Feb 20, 2026",
+        "excerpt": "El delantero fue buscado por el CSKA de Mosc\u00fa, pero la decisi\u00f3n fue mantenerse unos meses m\u00e1s Chivas por su proyecto y el Mundial....",
+        "link": "https://www.espn.com.mx/futbol/mexico/nota/_/id/16333276/chivas-hormiga-gonzalez-oferta-futbol-europa-rusia"
       }
     ],
     "partners_data": [
@@ -81,7 +85,8 @@
       "offers",
       "news",
       "partners",
-      "seo"
+      "seo",
+      "faq"
     ],
     "list_style": "table",
     "hero": {
@@ -96,19 +101,22 @@
     ],
     "news_data": [
       {
-        "title": "World Cup 2026 Updates",
-        "date": "Live",
-        "excerpt": "Tracking qualifiers and team rosters live."
+        "title": "No respite for World Cup fans affected by Trump travel restrictions",
+        "date": "Feb 20, 2026",
+        "excerpt": "Members of the Haitian and Senegalese communities in the U.S. react to President Donald Trump's visa restrictions ahead of the World Cup....",
+        "link": "https://www.espn.com/soccer/story/_/id/47966503/haiti-senegal-ivory-coast-iran-travel-visa-ban-world-cup-2026"
       },
       {
-        "title": "Betting Market Watch",
-        "date": "Today",
-        "excerpt": "Odds are shifting fast as teams prepare."
+        "title": "Meet the 19-year-old challenging to make USMNT's  World Cup squad",
+        "date": "Feb 20, 2026",
+        "excerpt": "Noahkai Banks' strong form in Bundesliga might get him  a starting spot on Mauricio Pochettino's USMNT squad....",
+        "link": "https://www.espn.com/soccer/story/_/id/47943775/meet-noahkai-banks-19-pick-make-usmnts-world-cup-squad"
       },
       {
-        "title": "Exclusive Promo",
-        "date": "Limited",
-        "excerpt": "Don't miss out on the 500% deposit bonus."
+        "title": "Madrid send UEFA evidence in Vini Jr. racism probe",
+        "date": "Feb 20, 2026",
+        "excerpt": "Real Madrid say they have supplied \"all available evidence\" to UEFA as the governing body investigates allegations of racism made by Vin\u00edcius J\u00fanior....",
+        "link": "https://www.espn.com/soccer/story/_/id/47974600/real-madrid-give-all-available-evidence-uefa-vinicius-junior-investigation"
       }
     ],
     "seo_content": {
