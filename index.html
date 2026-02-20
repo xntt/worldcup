@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data="app()" x-init="init()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Cup 2026 Guide</title>
+    <title x-text="site.seo_content?.title ? site.seo_content.title + ' | Daily Betting Picks' : 'Loading Daily Odds...'"></title>
     
     <!-- 1. 核心库 -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,7 +27,7 @@
 </head>
 
 <!-- 4. 初始化应用 -->
-<body class="bg-slate-900 text-white min-h-screen" x-data="app()">
+<body class="bg-slate-900 text-white min-h-screen" >
 
     <!-- 顶部导航 -->
     <nav class="border-b border-white/10 bg-slate-900/90 backdrop-blur sticky top-0 z-50">
@@ -51,7 +51,7 @@
             </div>
             <div class="relative z-10 max-w-3xl mx-auto">
                 <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500" 
-                    x-text="data.hero.title"></h1>
+                    x-text="site.hero.title"></h1>
                 <p class="text-xl text-gray-300 mb-8" x-text="data.hero.subtitle"></p>
                 <a href="#offers" class="inline-block bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-12 rounded-full shadow-lg shadow-green-900/50 transition-all transform hover:scale-105">
                     <span x-text="data.hero.cta_text"></span>
@@ -62,9 +62,10 @@
         <!-- B. MATCHES (赛事) -->
         <section class="py-12 px-4 bg-white/5">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-2xl font-display font-bold mb-6 flex items-center gap-2">
-                    <span class="text-green-500">⚽</span> Upcoming Matches
-                </h2>
+                <h2 class="text-3xl font-display font-bold mb-8 text-center text-gray-200 flex items-center justify-center gap-3">
+    <span class="text-4xl" x-text="getSportIcon(site.hero?.sport_type)"></span>
+    <span>Today's Top Matches</span>
+</h2>
                 <div class="grid gap-3">
                     <template x-for="match in data.matches">
                         <div class="bg-slate-800 p-4 rounded-lg flex flex-col md:flex-row justify-between items-center border border-white/5 hover:border-green-500/30 transition-colors">
@@ -173,9 +174,18 @@
 
     <!-- 5. 数据逻辑 (内嵌，无需 fetch) -->
     <script>
-        function app() {
+        function app(function getSportIcon(type) {
+    if (!type) return '⚽'; // 默认足球
+    type = type.toLowerCase();
+    if (type.includes('basket')) return '🏀';
+    if (type.includes('fight') || type.includes('ufc') || type.includes('box')) return '🥊';
+    if (type.includes('tennis')) return '🎾';
+    if (type.includes('football') || type.includes('nfl')) return '🏈';
+    return '⚽';
+}) {
             return {
-                // 这里是硬编码的数据，绝对不会加载失败
+                getSportIcon, 
+                loading: true,
                 data: {
                     hero: {
                         title: "Apuestas Mundial 2026",
