@@ -1,18 +1,16 @@
+
 <!DOCTYPE html>
-<html lang="en" x-data="app()" x-init="init()">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Cup 2026 Betting Guide</title>
     
-    <!-- 1. 动态 SEO 标题 (会随热点变化) -->
-    <title x-text="site.seo_content?.title ? site.seo_content.title : 'Daily Sports Betting & Odds Guide'"></title>
-    <meta name="description" :content="site.hero?.subtitle || 'Best betting odds and exclusive bonuses.'">
-    
-    <!-- 2. 核心库 -->
+    <!-- Tailwind & Alpine -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
     
-    <!-- 3. 字体 -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     
     <script>
@@ -20,7 +18,6 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Oswald', 'sans-serif'] },
-                    colors: { brand: { dark: '#0f172a', accent: '#22c55e' } }
                 }
             }
         }
@@ -28,89 +25,58 @@
     <style>[x-cloak] { display: none !important; }</style>
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen font-sans">
+<body class="bg-slate-900 text-white min-h-screen font-sans" x-data="app()">
 
-    <!-- Loading Screen -->
-    <div x-show="loading" class="fixed inset-0 bg-black z-50 flex items-center justify-center transition-opacity duration-500">
-        <div class="text-green-500 font-mono text-xl animate-pulse">FINDING BEST ODDS...</div>
-    </div>
-
-    <main x-show="!loading" x-cloak>
+    <!-- Main Content -->
+    <main x-cloak>
         
         <!-- Navbar -->
-        <nav class="border-b border-white/10 bg-slate-900/90 backdrop-blur sticky top-0 z-40">
+        <nav class="border-b border-white/10 bg-black/50 backdrop-blur-md sticky top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-                <div class="font-display text-2xl font-bold text-green-500 tracking-wider">
-                    BET<span class="text-white">GUIDE</span>
-                </div>
-                <div class="flex gap-3 text-[10px] font-bold tracking-widest text-gray-400">
-                    <span class="border border-white/20 px-2 py-1 rounded">LIVE</span>
-                    <span class="border border-white/20 px-2 py-1 rounded hidden md:inline">VERIFIED</span>
-                </div>
+                <div class="font-display text-2xl font-bold text-green-500" x-text="site.hero.title"></div>
+                <div class="text-xs font-bold text-gray-400 border border-white/20 px-2 py-1 rounded">VERIFIED</div>
             </div>
         </nav>
 
-        <!-- Dynamic Sections Loop -->
-        <template x-for="section in site.layout_order || defaultLayout" :key="section">
+        <!-- 循环渲染所有板块 -->
+        <template x-for="section in site.layout_order" :key="section">
             
-            <!-- A. HERO (动态热点主图) -->
-            <template x-if="section === 'hero' && site.hero">
+            <!-- 1. HERO -->
+            <template x-if="section === 'hero'">
                 <header class="relative py-24 px-4 text-center overflow-hidden border-b border-white/5">
-                    <!-- 背景图 -->
                     <div class="absolute inset-0 z-0">
-                        <img :src="site.hero.background_image" class="w-full h-full object-cover opacity-30 blur-sm scale-105">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                        <img :src="site.hero.background_image" class="w-full h-full object-cover opacity-30">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
                     </div>
-                    
-                    <!-- 内容 -->
                     <div class="relative z-10 max-w-4xl mx-auto">
-                        <!-- 动态运动标签 -->
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-bold mb-6 uppercase tracking-widest">
-                            <span class="animate-pulse">●</span> 
-                            <span x-text="site.hero.sport_type || 'Trending Event'"></span>
+                        <div class="inline-block px-3 py-1 mb-4 text-xs font-bold text-green-400 bg-green-900/30 rounded-full border border-green-500/30 animate-pulse">
+                            LIVE UPDATES
                         </div>
-                        
-                        <!-- 动态 H1 -->
-                        <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 text-white leading-tight drop-shadow-2xl" 
-                            x-text="site.hero.title"></h1>
-                        
-                        <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto" x-text="site.hero.subtitle"></p>
-                        
-                        <a href="#offers" class="group relative inline-flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-12 rounded-full shadow-lg shadow-green-900/50 transition-all transform hover:scale-105">
+                        <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 text-white" x-text="site.hero.title"></h1>
+                        <p class="text-xl text-gray-300 mb-8" x-text="site.hero.subtitle"></p>
+                        <a href="#offers" class="bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-12 rounded-full shadow-lg transition-transform transform hover:scale-105 inline-block">
                             <span x-text="site.hero.cta_text"></span>
-                            <span class="group-hover:translate-x-1 transition-transform">→</span>
                         </a>
                     </div>
                 </header>
             </template>
 
-            <!-- B. MATCHES (动态赛事 + 图标) -->
-            <template x-if="section === 'matches' && site.matches">
+            <!-- 2. MATCHES -->
+            <template x-if="section === 'matches'">
                 <section class="py-12 px-4 bg-white/5 border-b border-white/5">
-                    <div class="max-w-4xl mx-auto">
-                        <h2 class="text-2xl font-display font-bold mb-6 flex items-center justify-center gap-3 text-gray-200">
-                            <!-- 动态图标调用 -->
-                            <span class="text-3xl" x-text="getSportIcon(site.hero?.sport_type)"></span>
-                            <span>Featured Matchups</span>
-                        </h2>
-                        
-                        <div class="grid gap-3">
+                    <div class="max-w-3xl mx-auto">
+                        <h2 class="text-2xl font-display font-bold mb-6 text-center">Upcoming Matches</h2>
+                        <div class="space-y-3">
                             <template x-for="match in site.matches">
-                                <div class="bg-slate-800 p-4 rounded-xl flex flex-col md:flex-row justify-between items-center border border-white/5 hover:border-green-500/30 transition-all group">
-                                    <div class="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
-                                        <div class="text-right w-32 font-bold truncate" x-text="match.team_a"></div>
-                                        <div class="px-2 py-1 bg-black/50 rounded text-[10px] text-gray-500 font-mono">VS</div>
-                                        <div class="text-left w-32 font-bold truncate" x-text="match.team_b"></div>
+                                <div class="bg-slate-800 p-4 rounded-lg flex justify-between items-center border border-white/5 hover:border-green-500/30">
+                                    <div class="flex items-center gap-3">
+                                        <div class="text-right font-bold w-24" x-text="match.team_a"></div>
+                                        <div class="text-xs bg-black/50 px-2 py-1 rounded text-gray-400">VS</div>
+                                        <div class="text-left font-bold w-24" x-text="match.team_b"></div>
                                     </div>
-                                    <div class="flex items-center gap-4 mt-3 md:mt-0 w-full md:w-auto justify-between">
-                                        <div class="text-xs text-gray-400 text-right">
-                                            <div x-text="match.date" class="text-green-400 font-bold"></div>
-                                            <div x-text="match.stadium"></div>
-                                        </div>
-                                        <button class="bg-blue-600 group-hover:bg-green-600 transition-colors px-6 py-2 rounded-lg text-sm font-bold shadow-lg">
-                                            <span x-text="match.odds"></span>
-                                        </button>
-                                    </div>
+                                    <button class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded text-sm font-bold">
+                                        Odds: <span x-text="match.odds"></span>
+                                    </button>
                                 </div>
                             </template>
                         </div>
@@ -118,32 +84,21 @@
                 </section>
             </template>
 
-            <!-- C. OFFERS (推广) -->
-            <template x-if="section === 'offers' && activeOffers.length">
+            <!-- 3. OFFERS -->
+            <template x-if="section === 'offers'">
                 <section id="offers" class="py-16 px-4">
-                    <div class="max-w-5xl mx-auto">
-                        <h2 class="text-3xl font-display font-bold mb-10 text-center">🏆 Top Bonuses</h2>
-                        <div class="grid gap-6">
-                            <template x-for="(offer, index) in activeOffers">
-                                <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 p-1 rounded-2xl border border-white/5 hover:border-green-500/50 transition-all group">
-                                    <div class="absolute -top-3 left-4 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded shadow-lg uppercase tracking-wider">
-                                        #<span x-text="index + 1"></span> Editor's Choice
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-3xl font-display font-bold mb-10 text-center">Exclusive Bonuses</h2>
+                        <div class="grid gap-4">
+                            <template x-for="(offer, idx) in site.offers">
+                                <div class="bg-slate-800 p-6 rounded-xl border border-white/10 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+                                    <div class="absolute top-0 left-0 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1">TOP RATED</div>
+                                    <img :src="offer.logo" class="w-16 h-16 object-contain bg-white rounded p-1">
+                                    <div class="flex-1 text-center md:text-left">
+                                        <h3 class="text-xl font-bold" x-text="offer.name"></h3>
+                                        <div class="text-green-400 font-bold text-lg" x-text="offer.bonus"></div>
                                     </div>
-                                    <div class="bg-slate-900 rounded-xl p-6 flex flex-col md:flex-row items-center gap-6 h-full">
-                                        <img :src="offer.logo" class="w-20 h-20 object-contain bg-white rounded-lg p-2 shadow-inner">
-                                        <div class="flex-1 text-center md:text-left">
-                                            <h3 class="text-xl font-bold text-white group-hover:text-green-400 transition-colors" x-text="offer.name"></h3>
-                                            <div class="text-2xl font-bold text-green-400 my-1 font-display" x-text="offer.bonus"></div>
-                                            <div class="flex flex-wrap gap-2 justify-center md:justify-start">
-                                                <template x-for="tag in offer.tags">
-                                                    <span class="text-[10px] uppercase border border-white/10 px-2 py-1 rounded text-gray-400" x-text="tag"></span>
-                                                </template>
-                                            </div>
-                                        </div>
-                                        <a :href="offer.link" target="_blank" class="w-full md:w-auto bg-white text-black font-bold py-4 px-8 rounded-xl hover:bg-gray-200 text-center transition-transform hover:scale-105 shadow-xl">
-                                            CLAIM NOW
-                                        </a>
-                                    </div>
+                                    <a :href="offer.link" class="bg-white text-black font-bold py-3 px-8 rounded hover:bg-gray-200 w-full md:w-auto text-center">CLAIM</a>
                                 </div>
                             </template>
                         </div>
@@ -151,22 +106,18 @@
                 </section>
             </template>
 
-            <!-- D. NEWS (新闻 - 支持跳转) -->
-            <template x-if="section === 'news' && site.news">
+            <!-- 4. NEWS -->
+            <template x-if="section === 'news'">
                 <section class="py-16 px-4 bg-black/20">
-                    <div class="max-w-7xl mx-auto">
-                        <h2 class="text-3xl font-display font-bold mb-8 text-center">📰 Latest Trends</h2>
+                    <div class="max-w-6xl mx-auto">
+                        <h2 class="text-3xl font-display font-bold mb-8 text-center">Latest News</h2>
                         <div class="grid md:grid-cols-3 gap-6">
                             <template x-for="item in site.news">
-                                <article class="bg-slate-800 p-6 rounded-xl border border-white/5 hover:border-green-500/30 transition-all group flex flex-col h-full">
-                                    <div class="flex justify-between items-start mb-3">
-                                        <span class="text-xs font-bold text-green-400 px-2 py-1 bg-green-900/30 rounded" x-text="item.date"></span>
-                                    </div>
-                                    <h3 class="text-lg font-bold mb-3 leading-tight group-hover:text-green-400 transition-colors" x-text="item.title"></h3>
-                                    <p class="text-sm text-gray-400 mb-6 line-clamp-3 flex-grow" x-text="item.excerpt"></p>
-                                    <a :href="item.link" target="_blank" class="text-xs font-bold uppercase tracking-widest text-white flex items-center gap-2 hover:gap-3 transition-all">
-                                        Read Full Story <span>→</span>
-                                    </a>
+                                <article class="bg-slate-800 p-6 rounded-xl border border-white/5 hover:border-green-500/30">
+                                    <div class="text-xs text-green-400 mb-2" x-text="item.date"></div>
+                                    <h3 class="text-lg font-bold mb-3 leading-tight" x-text="item.title"></h3>
+                                    <p class="text-sm text-gray-400 mb-4 line-clamp-3" x-text="item.excerpt"></p>
+                                    <a :href="item.link" class="text-xs font-bold underline decoration-green-500">Read More →</a>
                                 </article>
                             </template>
                         </div>
@@ -174,159 +125,83 @@
                 </section>
             </template>
 
-            <!-- E. FAQ -->
-            <template x-if="section === 'faq' && site.faq">
+            <!-- 5. FAQ -->
+            <template x-if="section === 'faq'">
                 <section class="py-16 px-4">
-                    <div class="max-w-3xl mx-auto">
+                    <div class="max-w-3xl mx-auto space-y-4">
                         <h2 class="text-3xl font-display font-bold mb-8 text-center">FAQ</h2>
-                        <div class="space-y-4">
-                            <template x-for="item in site.faq">
-                                <div class="bg-slate-800/50 p-6 rounded-lg border border-white/5">
-                                    <h3 class="font-bold text-lg mb-2 text-green-400 flex gap-2">
-                                        <span class="opacity-50">?</span> <span x-text="item.q"></span>
-                                    </h3>
-                                    <p class="text-gray-300 text-sm leading-relaxed pl-6" x-text="item.a"></p>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </section>
-            </template>
-
-            <!-- F. SEO CONTENT (长文 HTML 渲染) -->
-            <template x-if="section === 'seo' && site.seo_content">
-                <section class="py-16 px-4 bg-white/5">
-                    <div class="max-w-4xl mx-auto">
-                         <!-- 这里使用 x-html 渲染 Agent 生成的 H3/P/UL 标签 -->
-                        <div class="prose prose-invert prose-lg max-w-none" x-html="site.seo_content.body"></div>
-                    </div>
-                </section>
-            </template>
-            
-            <!-- G. PARTNERS -->
-            <template x-if="section === 'partners' && site.partners">
-                <section class="py-12 border-t border-white/5 text-center">
-                     <p class="text-xs font-bold text-gray-600 mb-6 uppercase tracking-widest">Trusted Partners</p>
-                    <div class="flex flex-wrap justify-center gap-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                        <template x-for="logo in site.partners">
-                            <img :src="logo" class="h-8 object-contain">
+                        <template x-for="item in site.faq">
+                            <div class="bg-slate-800/50 p-6 rounded border border-white/5">
+                                <div class="font-bold text-green-400 mb-1" x-text="item.q"></div>
+                                <div class="text-sm text-gray-300" x-text="item.a"></div>
+                            </div>
                         </template>
                     </div>
                 </section>
             </template>
 
-        </template> <!-- END Loop -->
+            <!-- 6. PARTNERS -->
+            <template x-if="section === 'partners'">
+                <section class="py-10 text-center border-t border-white/10 opacity-50">
+                    <div class="flex justify-center gap-8">
+                        <template x-for="logo in site.partners">
+                            <img :src="logo" class="h-8 grayscale">
+                        </template>
+                    </div>
+                </section>
+            </template>
 
-        <footer class="py-8 text-center border-t border-white/10 text-xs text-gray-500">
-            <p>&copy; 2026 Sports Betting Guide. Please Gamble Responsibly.</p>
+            <!-- 7. SEO -->
+            <template x-if="section === 'seo'">
+                <section class="py-16 px-4 bg-white/5">
+                    <div class="max-w-4xl mx-auto prose prose-invert" x-html="site.seo_content"></div>
+                </section>
+            </template>
+
+        </template> <!-- END LOOP -->
+
+        <footer class="py-8 text-center text-xs text-gray-600 border-t border-white/10">
+            &copy; 2026 World Cup Guide. Please Gamble Responsibly.
         </footer>
-
     </main>
 
-    <!-- 逻辑脚本 -->
+    <!-- 数据逻辑 (HARDCODED) -->
     <script>
         function app() {
             return {
-                loading: true,
-                site: {},
-                activeOffers: [],
-                defaultLayout: ["hero", "matches", "offers", "news", "faq", "partners", "seo"],
-
-                // 兜底数据：如果 JSON 加载失败，或者 Agent 还没运行，就显示这个“NBA热点”
-                fallbackData: {
-                    hostname: "fallback",
+                site: {
+                    // 1. 布局顺序 (对应上面的 section === 'xxx')
+                    layout_order: ["hero", "matches", "offers", "news", "faq", "partners", "seo"],
+                    
+                    // 2. 数据部分 (注意变量名完全匹配 HTML)
                     hero: {
-                        title: "Lakers vs Warriors: Play-in Preview",
-                        subtitle: "Steph Curry vs LeBron James. Who advances tonight?",
-                        cta_text: "Bet on Lakers @ 2.10",
-                        sport_type: "basketball",
-                        background_image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1920&q=80"
+                        title: "Apuestas Mundial 2026",
+                        subtitle: "The Ultimate Betting Guide for Mexico & USA",
+                        cta_text: "View Offers",
+                        background_image: "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&w=1920&q=80"
                     },
                     matches: [
-                        { team_a: "Lakers", team_b: "Warriors", date: "Tonight 7:00 PM", stadium: "Crypto.com Arena", odds: "2.10 / 1.75" },
-                        { team_a: "Heat", team_b: "76ers", date: "Tomorrow 8:00 PM", stadium: "Wells Fargo Center", odds: "2.50 / 1.55" }
+                        { team_a: "Mexico", team_b: "Brazil", date: "June 12", odds: "3.50" },
+                        { team_a: "USA", team_b: "England", date: "June 13", odds: "2.10" }
                     ],
-                    offer_ids: ["fallback_1", "fallback_2"],
+                    offers: [
+                        { name: "1win Official", logo: "https://via.placeholder.com/100?text=1WIN", link: "#", bonus: "500% Bonus", tags: ["Crypto"] },
+                        { name: "Stake Casino", logo: "https://via.placeholder.com/100?text=STAKE", link: "#", bonus: "$1000 Bonus", tags: ["VIP"] }
+                    ],
                     news: [
-                        { title: "LeBron James Injury Update", date: "Today", excerpt: "Is the King ready for the play-in tournament? Full report here.", link: "#" },
-                        { title: "Warriors Shooting Stats", date: "Yesterday", excerpt: "Curry is shooting 45% from deep in his last 5 games.", link: "#" }
+                        { title: "Mexico Squad Announced", date: "Today", excerpt: "The final roster is here...", link: "#" },
+                        { title: "Betting Odds Update", date: "Yesterday", excerpt: "Brazil remains the favorite...", link: "#" },
+                        { title: "Stadium Guide", date: "2 days ago", excerpt: "How to get to Azteca...", link: "#" }
                     ],
                     faq: [
-                        { q: "Where can I watch the game?", a: "ESPN and TNT will broadcast live." },
-                        { q: "Is betting legal in California?", a: "Not yet, but you can use offshore options or social casinos." }
+                        { q: "Is it legal?", a: "Yes, fully licensed." },
+                        { q: "How to deposit?", a: "Use Crypto or Credit Card." }
                     ],
                     partners: [
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
                         "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png"
                     ],
-                    seo_content: {
-                        title: "NBA Play-in Tournament Betting Guide",
-                        body: "<h3>NBA Betting Analysis</h3><p>The play-in tournament brings high stakes action. This guide covers the best odds for Lakers vs Warriors.</p>"
-                    }
-                },
-                
-                fallbackOffers: [
-                    { id: "fallback_1", name: "1win Official", logo: "https://via.placeholder.com/100?text=1WIN", link: "#", bonus: "500% Bonus", tags: ["Crypto"] },
-                    { id: "fallback_2", name: "Stake US", logo: "https://via.placeholder.com/100?text=STAKE", link: "#", bonus: "250K Gold Coins", tags: ["Social"] }
-                ],
-
-                // 动态图标逻辑
-                getSportIcon(type) {
-                    if (!type) return '⚽'; 
-                    type = type.toLowerCase();
-                    if (type.includes('basket') || type.includes('nba')) return '🏀';
-                    if (type.includes('fight') || type.includes('ufc') || type.includes('box')) return '🥊';
-                    if (type.includes('tennis')) return '🎾';
-                    if (type.includes('football') || type.includes('nfl')) return '🏈';
-                    return '⚽';
-                },
-
-                async init() {
-                    try {
-                        // 1. 尝试从 GitHub 读取数据
-                        const [sitesRes, offersRes] = await Promise.all([
-                            fetch('./sites.json?t=' + Date.now()), 
-                            fetch('./offers.json?t=' + Date.now())
-                        ]);
-
-                        if (!sitesRes.ok || !offersRes.ok) throw new Error("File fetch failed");
-
-                        const allSites = await sitesRes.json();
-                        const allOffers = await offersRes.json();
-
-                        // 2. 匹配当前域名
-                        let hostname = window.location.hostname;
-                        if (hostname.includes('localhost') || hostname.includes('127.0.0.1')) {
-                            // 本地测试强制匹配第一个，或者你自己指定的
-                            hostname = allSites[0].hostname; 
-                        }
-
-                        // 3. 找到配置
-                        this.site = allSites.find(s => s.hostname === hostname);
-
-                        // 关键修复：如果找不到当前域名的配置，不要白屏，使用第一个域名的配置，或者兜底数据
-                        if (!this.site) {
-                            console.warn("Domain config not found. Using Fallback.");
-                            this.site = this.fallbackData;
-                            this.activeOffers = this.fallbackOffers;
-                        } else {
-                            // 4. 匹配 Offer
-                            this.activeOffers = (this.site.offer_ids || [])
-                                .map(id => allOffers.find(o => o.id === id))
-                                .filter(Boolean);
-                            
-                            // 如果 Offer 匹配失败，也用兜底 Offer 防止空白
-                            if (this.activeOffers.length === 0) this.activeOffers = this.fallbackOffers;
-                        }
-
-                    } catch (e) {
-                        console.error("Data Load Error, using fallback:", e);
-                        // 出错时，直接加载兜底数据，保证页面有内容
-                        this.site = this.fallbackData;
-                        this.activeOffers = this.fallbackOffers;
-                    } finally {
-                        this.loading = false;
-                    }
+                    seo_content: "<h3>Official Guide</h3><p>This is the definitive guide for betting on the World Cup.</p>"
                 }
             }
         }
