@@ -1,155 +1,48 @@
 [
   {
     "hostname": "mx.worldcup-guide.com",
-    "theme": "royal",
-    "layout_order": [
-      "hero",
-      "matches",
-      "offers",
-      "news",
-      "partners",
-      "seo",
-      "faq"
-    ],
+    "layout_order": ["hero", "matches", "offers", "news", "faq", "partners", "seo"],
     "hero": {
-      "title": "World Cup 2026 Live Hub",
-      "subtitle": "Exclusive Betting Odds & News",
-      "cta_text": "View Offers",
-      "background_image": "https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&w=1920&q=80"
+      "title": "Apuestas Mundial 2026",
+      "subtitle": "La mejor guía para apostar en México",
+      "cta_text": "Ver Ofertas",
+      "background_image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80"
     },
-    "offer_ids": [
-      "1win_mx",
-      "stake_us"
+    "offer_ids": ["1win_mx", "stake_global"],
+    "matches": [
+      {"team_a": "Mexico", "team_b": "Brazil", "date": "June 12", "odds": "3.50"},
+      {"team_a": "USA", "team_b": "England", "date": "June 13", "odds": "2.10"}
     ],
-    "matches_data": [
+    "news": [
       {
-        "team_a": "Mexico",
-        "team_b": "Brazil",
-        "date": "Feb 20 - 20:00",
-        "stadium": "MetLife Stadium",
-        "odds": "2.46"
+        "title": "Mexico Squad Announcement",
+        "date": "Today",
+        "excerpt": "The official roster has been revealed...",
+        "link": "https://espn.com.mx"
       },
       {
-        "team_a": "Mexico",
-        "team_b": "France",
-        "date": "Feb 21 - 20:00",
-        "stadium": "BC Place",
-        "odds": "2.78"
+        "title": "Azteca Stadium Renovations",
+        "date": "Yesterday",
+        "excerpt": "New VIP sections added for 2026...",
+        "link": "https://espn.com.mx"
       },
       {
-        "team_a": "Canada",
-        "team_b": "Argentina",
-        "date": "Feb 22 - 20:00",
-        "stadium": "BC Place",
-        "odds": "2.78"
+        "title": "Group A Predictions",
+        "date": "2 days ago",
+        "excerpt": "Why Mexico might top the group...",
+        "link": "https://espn.com.mx"
       }
     ],
-    "news_data": [
-      {
-        "title": "Las Chivas de Milito rescatan la lista de Aguirre ante Islandia",
-        "date": "Feb 20, 2026",
-        "excerpt": "El Reba\u00f1o se convierti\u00f3 en la base de la Selecci\u00f3n Mexicana, con siete convocados para cubrir las bajas por lesi\u00f3n y ventas a Europa...",
-        "link": "https://www.espn.com.mx/futbol/selecciones/nota/_/id/16334257/seleccion-mexicana-chivas-convocatoria-javier-aguirre-islandia"
-      },
-      {
-        "title": "Campillo y 'Memote', sorpresas en la lista del 'Vasco'",
-        "date": "Feb 20, 2026",
-        "excerpt": "Javier Aguirre debi\u00f3 'improvisar' con jugadores del torneo local tras perder a varios candidatos por fichajes internacionales y lesiones...",
-        "link": "https://www.espn.com.mx/futbol/selecciones/nota/_/id/16331166/seleccion-mexicana-convocatoria-islandia-amistoso-2026"
-      },
-      {
-        "title": "'Hormiga' Gonz\u00e1lez rechaza oferta millonaria de Rusia: Fuentes",
-        "date": "Feb 20, 2026",
-        "excerpt": "El delantero fue buscado por el CSKA de Mosc\u00fa, pero la decisi\u00f3n fue mantenerse unos meses m\u00e1s Chivas por su proyecto y el Mundial....",
-        "link": "https://www.espn.com.mx/futbol/mexico/nota/_/id/16333276/chivas-hormiga-gonzalez-oferta-futbol-europa-rusia"
-      }
+    "faq": [
+      {"q": "¿Es legal apostar en 1win?", "a": "Sí, es completamente legal y seguro."},
+      {"q": "¿Cómo deposito dinero?", "a": "Puedes usar OXXO o SPEI para depósitos instantáneos."}
     ],
-    "partners_data": [
+    "partners": [
       "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/100px-Apple_logo_black.svg.png"
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png"
     ],
     "seo_content": {
-      "title": "mx.worldcup-guide.com Guide",
-      "body": "Official betting partner guide for mx.worldcup-guide.com."
+      "body": "<h3>Best Betting Guide 2026</h3><p>This is the definitive guide for Mexican players. We cover all aspects of the World Cup.</p>"
     }
-  },
-  {
-    "id": "site_u3lacy",
-    "hostname": "loan-usa.worldcup-guide.com",
-    "name": "Best Finance Deals 2026",
-    "theme": "modern",
-    "layout_order": [
-      "hero",
-      "matches",
-      "offers",
-      "news",
-      "partners",
-      "seo",
-      "faq"
-    ],
-    "list_style": "table",
-    "hero": {
-      "title": "Top Finance Offers",
-      "subtitle": "Exclusive 2026 World Cup Deals",
-      "cta_text": "Check Offers",
-      "background_image": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?auto=format&fit=crop&w=1920&q=80"
-    },
-    "offer_ids": [
-      "1win_mx",
-      "stake_us"
-    ],
-    "news_data": [
-      {
-        "title": "No respite for World Cup fans affected by Trump travel restrictions",
-        "date": "Feb 20, 2026",
-        "excerpt": "Members of the Haitian and Senegalese communities in the U.S. react to President Donald Trump's visa restrictions ahead of the World Cup....",
-        "link": "https://www.espn.com/soccer/story/_/id/47966503/haiti-senegal-ivory-coast-iran-travel-visa-ban-world-cup-2026"
-      },
-      {
-        "title": "Meet the 19-year-old challenging to make USMNT's  World Cup squad",
-        "date": "Feb 20, 2026",
-        "excerpt": "Noahkai Banks' strong form in Bundesliga might get him  a starting spot on Mauricio Pochettino's USMNT squad....",
-        "link": "https://www.espn.com/soccer/story/_/id/47943775/meet-noahkai-banks-19-pick-make-usmnts-world-cup-squad"
-      },
-      {
-        "title": "Madrid send UEFA evidence in Vini Jr. racism probe",
-        "date": "Feb 20, 2026",
-        "excerpt": "Real Madrid say they have supplied \"all available evidence\" to UEFA as the governing body investigates allegations of racism made by Vin\u00edcius J\u00fanior....",
-        "link": "https://www.espn.com/soccer/story/_/id/47974600/real-madrid-give-all-available-evidence-uefa-vinicius-junior-investigation"
-      }
-    ],
-    "seo_content": {
-      "body": "Official betting partner guide for loan-usa.worldcup-guide.com.",
-      "title": "loan-usa.worldcup-guide.com Guide"
-    },
-    "matches_data": [
-      {
-        "team_a": "Brazil",
-        "team_b": "USA",
-        "date": "Feb 20 - 20:00",
-        "stadium": "BC Place",
-        "odds": "2.87"
-      },
-      {
-        "team_a": "Canada",
-        "team_b": "Spain",
-        "date": "Feb 21 - 20:00",
-        "stadium": "Azteca",
-        "odds": "2.05"
-      },
-      {
-        "team_a": "USA",
-        "team_b": "Brazil",
-        "date": "Feb 22 - 20:00",
-        "stadium": "MetLife Stadium",
-        "odds": "2.11"
-      }
-    ],
-    "partners_data": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/200px-PayPal.svg.png",
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/100px-Apple_logo_black.svg.png"
-    ]
   }
 ]
