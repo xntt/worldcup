@@ -1,41 +1,30 @@
 [
   {
-    "hostname": "mx.worldcup-guide.com",
-    "topic": "World Cup 2026",
+    "hostname": "mx,worldcup-guide.com",
+    "topic": "World Cup 2026 and Liga MX",
     "geo": "Mexico",
-    "offer_ids": [
-      "1win_global"
-    ],
-    "seo_title": "Apuestas Mundial 2026 - Gu\u00eda Oficial M\u00e9xico",
-    "seo_desc": "Las mejores cuotas para M\u00e9xico en el Mundial 2026.",
+    "lang": "es",
+    "seo_title": "Apuestas Mundial 2026 - Guía Oficial México",
+    "seo_desc": "Las mejores cuotas y noticias para México en el Mundial 2026.",
     "hero": {
       "title": "Mundial 2026 En Vivo",
-      "subtitle": "Noticias y Apuestas Seguras en M\u00e9xico",
-      "cta": "Ver Bonos",
+      "subtitle": "Noticias y Predicciones Seguras en México",
+      "cta_text": "Ver Bonos Exclusivos",
       "bg_image": "https://images.unsplash.com/photo-1518091043644-c1d4457512c6"
-    },
-    "matches": [],
-    "news": [],
-    "seo_article": "<p>Waiting for Agent...</p>"
+    }
   },
   {
-    "hostname": "crypto-bet.net",
-    "topic": "Champions League",
-    "geo": "Global",
-    "offer_ids": [
-      "1win_global",
-      "stake_us"
-    ],
-    "seo_title": "Crypto Betting - Champions League",
-    "seo_desc": "Bet with BTC/USDT on top football matches.",
+    "hostname": "usa-trends.worldcup-guide.com",
+    "topic": "Super Bowl & US Sports Betting",
+    "geo": "USA",
+    "lang": "en",
+    "seo_title": "US Sports Betting Guide: Super Bowl & More",
+    "seo_desc": "Latest odds, predictions, and betting news for US sports.",
     "hero": {
-      "title": "Crypto Sports Betting",
-      "subtitle": "Instant Withdrawals & High Limits",
-      "cta": "Start Betting",
-      "bg_image": "https://images.unsplash.com/photo-1621416894569-0f39ed31d247"
-    },
-    "matches": [],
-    "news": [],
-    "seo_article": "<p>Waiting for Agent...</p>"
+      "title": "Bet on US Sports",
+      "subtitle": "High Limits, Fast Payouts & Crypto Accepted",
+      "cta_text": "Claim Welcome Bonus",
+      "bg_image": "https://images.unsplash.com/photo-1566577739112-5180d4bf9390"
+    }
   }
 ]
