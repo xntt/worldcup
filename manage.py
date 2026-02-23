@@ -1,66 +1,104 @@
-import json
 import os
-import google.generativeai as genai
-from jinja2 import Template
+import json
 import markdown
+from jinja2 import Template
+import google.generativeai as genai
+from dotenv import load_dotenv
 
-# 1. 唤醒大模型 (请确保 Github Actions 的 Secrets 里面存了 GEMINI_API_KEY)
-# 这里用的是完全免费的 Gemini 模型，速度极快
-api_key = os.environ.get("GEMINI_API_KEY")
-if not api_key:
-    print("❌ 警告: 没有找到 GEMINI_API_KEY，将生成无 AI 内容的占位页面。")
-else:
-    genai.configure(api_key=api_key)
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
 
-model = genai.GenerativeModel('gemini-1.5-flash')
+# 配置模型
+model = None
+if api_key:
+    try:
+        genai.configure(api_key=api_key)
+        # 使用你列表里确认可用的模型
+        model = genai.GenerativeModel('models/gemini-2.5-flash-lite')
+    except Exception as e:
+        print(f"⚠️ AI 配置出错: {e}")
 
-# 2. 读取配置和模板
-with open('sites.json', 'r', encoding='utf-8') as f:
-    sites = json.load(f)
+# 读取数据
+try:
+    with open('sites.json', 'r', encoding='utf-8') as f:
+        sites = json.load(f)
+except FileNotFoundError:
+    sites = []
 
-with open('template.html', 'r', encoding='utf-8') as f:
-    template_str = f.read()
-template = Template(template_str)
+# 读取模板
+try:
+    with open('template.html', 'r', encoding='utf-8') as f:
+        template_str = f.read()
+    template = Template(template_str)
+except FileNotFoundError:
+    print("❌ 找不到 template.html")
+    exit()
 
-# 3. 循环为每个网站生成定制化内容
+print(f"🚀 开始构建 {len(sites)} 个站点...\n")
+
+# 用于生成首页导航列表
+links = []
+
 for site in sites:
-    hostname = site['hostname']
-    print(f"[{hostname}] ⚙️ 正在生成站点...")
+    hostname = site.get('hostname', 'unknown')
+    topic = site.get('topic', 'General')
+    
+    # 记录链接，方便生成总首页
+    links.append({'name': hostname, 'url': f"{hostname}/index.html"})
 
-    ai_html_content = "<p>Coming soon...</p>" # 默认占位内容
-
-    # 4. 指挥 AI 自动写 SEO 文章 (关键点：针对该国家的语言和话题)
-    if api_key:
-        prompt = f"""
-        You are an expert sports journalist and SEO copywriter.
-        Write a highly engaging, 3-paragraph article about "{site['topic']}".
-        Target Audience Geo: {site['geo']}
-        Language: {site['lang']}
-        Include: Latest odds, predictions, and tips. Use H3 tags for subheadings.
-        Format strictly in Markdown. Do not include a main H1 title.
-        """
+    print(f"[{hostname}] ⚙️ 处理中...")
+    
+    ai_content = "<p>Default Content</p>"
+    if model:
         try:
-            print(f"[{hostname}] 🤖 正在请求 AI 撰写关于 {site['topic']} ({site['lang']}) 的原创文章...")
+            prompt = f"Write a short intro article about {topic} in Markdown."
             response = model.generate_content(prompt)
-            # 将 AI 生成的 Markdown 转成 HTML，以便放进网页
-            ai_html_content = markdown.markdown(response.text)
-            print(f"[{hostname}] ✅ AI 文案生成成功！")
+            if response.text:
+                ai_content = markdown.markdown(response.text)
         except Exception as e:
-            print(f"[{hostname}] ❌ AI 生成失败: {e}")
+            print(f"[{hostname}] AI Error: {e}")
 
-    # 5. 把配置和 AI 内容渲染到 HTML 模板中
-    final_html = template.render(
-        site=site,
-        ai_content=ai_html_content
-    )
-
-    # 6. 保存为静态网站文件
+    # 渲染子站点
+    html = template.render(site=site, ai_content=ai_content)
+    
+    # 保存子站点
     output_dir = f"dist/{hostname}"
     os.makedirs(output_dir, exist_ok=True)
-    
     with open(f"{output_dir}/index.html", "w", encoding='utf-8') as f:
-        f.write(final_html)
-    
-    print(f"[{hostname}] 🎉 静态文件生成完毕存放于: {output_dir}/index.html\n")
+        f.write(html)
 
-print("🚀 所有站点自动部署构建完成！")
+# --- 新增：生成根目录的导航首页 (index.html) ---
+index_html = """
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World Cup Sites Hub</title>
+    <style>
+        body { font-family: sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+        h1 { color: #333; }
+        ul { list-style: none; padding: 0; }
+        li { margin: 10px 0; border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
+        a { text-decoration: none; color: #0070f3; font-weight: bold; font-size: 1.2em; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>🌍 站点列表 / Sites Dashboard</h1>
+    <p>以下是已生成的站点入口：</p>
+    <ul>
+"""
+
+for link in links:
+    index_html += f'<li>👉 <a href="{link["url"]}">{link["name"]}</a></li>'
+
+index_html += """
+    </ul>
+</body>
+</html>
+"""
+
+# 保存总首页到 dist/index.html
+with open("dist/index.html", "w", encoding='utf-8') as f:
+    f.write(index_html)
+
+print("\n🎉 全部完成！已生成 dist/index.html 导航页。")

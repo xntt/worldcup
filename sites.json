@@ -60,5 +60,36 @@
       "crypto": [{"name": "Coinbase", "desc": "Buy BTC easily", "link": "#"}],
       "vpn": [{"name": "ExpressVPN", "desc": "Secure Betting", "link": "#"}]
     }
+  },
+  {
+    "hostname": "br.worldcup-guide.com",
+    "topic": "World Cup 2026 Brazil National Team",
+    "geo": "Brazil",
+    "lang": "pt",
+    "seo_title": "Apostas Copa do Mundo 2026 - Guia Brasil",
+    "seo_desc": "As melhores odds para o Brasil. Aposte com Pix e Cripto.",
+    "contact": {
+      "telegram": "https://t.me/br_betting",
+      "email": "br@worldcup-guide.com"
+    },
+    "hero": {
+      "title": "Brasil na Copa 2026",
+      "subtitle": "Odds Altas e Pagamentos via Pix 🇧🇷",
+      "cta_text": "Pegar Bônus",
+      "bg_image": "https://images.unsplash.com/photo-1552398246-52c679a94156?auto=format&fit=crop&w=1920&q=80"
+    },
+    "affiliates": {
+      "casinos": [
+        {
+          "name": "Brazino777", 
+          "logo": "", 
+          "bonus": "R$ 4000 Bônus", 
+          "link": "https://link-brasil.com", 
+          "tags": ["Pix", "Real"]
+        }
+      ],
+      "crypto": [{"name": "Binance", "desc": "Comprar USDT", "link": "#"}],
+      "vpn": [{"name": "NordVPN", "desc": "Acesso Seguro", "link": "#"}]
+    }
   }
 ]
